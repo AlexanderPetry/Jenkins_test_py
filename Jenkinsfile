@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Print') {
       steps {
-        echo 'this works
+        echo 'this works'
       }
     }
     stage('version') {
