@@ -8,7 +8,7 @@ pipeline {
     }
     stage('hello') {
       steps {
-        bat 'python3 hello.py'
+        bat 'C:\Users\RobbertjanVerschuren\AppData\Local\Programs\Python\Python313\python.exe hello.py'
       }
     }
   }
