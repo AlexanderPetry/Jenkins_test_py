@@ -4,6 +4,7 @@ pipeline {
     stage('Print') {
       steps {
         echo 'this works'
+        echo '%PATH%'
       }
     }
     stage('hello') {
