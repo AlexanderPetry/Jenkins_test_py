@@ -13,7 +13,7 @@ pipeline {
     }
       stage('send_to_twin') {
       steps {
-        bat 'pip install requests'
+        bat 'pip install pyads'
         bat 'C:\\Users\\TA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe send.py'
       }
     }
