@@ -14,7 +14,7 @@ device_name, version = plc.read_device_info()
 print(str(device_name) + ' ' + str(version))
 
 #read a boolean
-Test_case = plc.read_by_name('GVL.ID_number;', pyads.PLCTYPE_USINT)
+Test_case = plc.read_by_name('GVL.ID_number', pyads.PLCTYPE_USINT)
 """"
 	ElectricalLimits_ID: UDINT := 16#18FFCAF3;
 	ElectricalLimits_Length: USINT := 8;
