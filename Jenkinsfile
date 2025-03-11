@@ -8,12 +8,12 @@ pipeline {
     }
     stage('hello') {
       steps {
-        bat 'C:\\Users\\TA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe hello.py'
+        bat 'python hello.py'
       }
     }
       stage('send_to_twin') {
       steps {
-        bat 'C:\\Users\\TA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe send.py'
+        bat 'python send.py'
       }
     }
     
