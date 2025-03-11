@@ -140,24 +140,28 @@ plc.write_by_name('python.ID_number', 1)
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
 
-seen_cases = set();
+seen_cases = set()
 while Test_case in {0,1,2}:
 	Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 	match Test_case:
 		case 0 if 0 not in seen_cases:
 			print("Current TestCase is " + str(Test_case))
-			print("Nothing is getting tested")
+			print("Nothing is tested")
 			seen_cases.add(0)
 		case 1 if 1 not in seen_cases:
 			print("Current TestCase is " +str(Test_case))
-			print("HV battery is getting tested")
+			print("HV battery is tested")
+
 			seen_cases.add(1)
 		case 2 if 2 not in seen_cases:
 			print("Current TestCase is " +str(Test_case))
-			print("MCD is getting tested")
+			print("MCD is tested")
 			seen_cases.add(2)
-		# case _:
-		# 		print("ERROR OUTOFBOUND ID NUMBER")
+		case _:
+		 	print("ERROR LATEST TESTCASE FAILED")
+			seen_cases.add(100)
+			
+			 
 
 
 
