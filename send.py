@@ -1,4 +1,5 @@
 import pyads
+import time
 #192.168.1.120.1.1 #5.108.194.44.1.1
 AMSNETID = '5.108.194.44.1.1'
 #IP =  '169.254.0.76'
@@ -137,11 +138,11 @@ Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 
 #write ack
 plc.write_by_name('MAIN_1.ID_MAIN', 1)
-Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 
 
 seen_cases = set();
 while Test_case in {0,1,2}:
+	plc.write_by_name('MAIN_1.ID_MAIN', Test_case)
 	Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 	match Test_case:
 		case 0 if 0 not in seen_cases:
@@ -158,7 +159,8 @@ while Test_case in {0,1,2}:
 			seen_cases.add(2)
 		# case _:
 		# 		print("ERROR OUTOFBOUND ID NUMBER")
-
+	time.sleep(70)
+	Test_case =+ 1
 
 
 """#read int number
