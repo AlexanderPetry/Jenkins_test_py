@@ -8,7 +8,7 @@ pipeline {
     }
     stage('hello') {
       steps {
-        bat 'C:\\Users\\RobbertjanVerschuren\\AppData\\Local\\Programs\\Python\\Python312\\python.exe hello.py'
+        bat 'C:\\Users\\TA\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe hello.py'
       }
     }
       stage('send_to_twin') {
