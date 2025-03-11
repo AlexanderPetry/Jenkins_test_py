@@ -14,7 +14,7 @@ device_name, version = plc.read_device_info()
 print(str(device_name) + ' ' + str(version))
 
 #read a boolean
-Test_case = plc.read_by_name('MAIN.ID_Number', pyads.PLCTYPE_USINT)
+Test_case = plc.read_by_name('MAIN_1.ID_Number', pyads.PLCTYPE_USINT)
 """"
 	ElectricalLimits_ID: UDINT := 16#18FFCAF3;
 	ElectricalLimits_Length: USINT := 8;
@@ -136,12 +136,13 @@ Test_case = plc.read_by_name('MAIN.ID_Number', pyads.PLCTYPE_USINT)
 """
 
 #write ack
-plc.write_by_name('MAIN.ID_Number', 1)
-Test_case = plc.read_by_name('MAIN.ID_Number', pyads.PLCTYPE_USINT)
+plc.write_by_name('MAIN_1.ID_Number', 1)
+Test_case = plc.read_by_name('MAIN_1.ID_Number', pyads.PLCTYPE_USINT)
 
-Test_case = plc.read_by_name('MAIN.ID_Number', pyads.PLCTYPE_USINT)
+
 seen_cases = set();
 while Test_case in {0,1,2}:
+	Test_case = plc.read_by_name('MAIN_1.ID_Number', pyads.PLCTYPE_USINT)
 	match Test_case:
 		case 0 if 0 not in seen_cases:
 			print("Current TestCase is " + str(Test_case))
@@ -157,3 +158,25 @@ while Test_case in {0,1,2}:
 			seen_cases.add(2)
 		# case _:
 		# 		print("ERROR OUTOFBOUND ID NUMBER")
+
+
+
+"""#read int number
+int_number = plc.read_by_name('MAIN.nMyNumber', pyads.PLCTYPE_INT)
+print(int_number)
+
+#read real number
+real_number = plc.read_by_name('MAIN.fMyRealNumber', pyads.PLCTYPE_REAL)
+print(real_number)
+
+#read string
+message_from_twincat = plc.read_by_name('MAIN.sMessageToPython', pyads.PLCTYPE_STRING)
+print(message_from_twincat)
+
+#write string
+if len(message_from_twincat) > 1:
+    message_to_twincat = 'Hi TwinCAT! I KNOW YOUR SECRETS'
+    plc.write_by_name('MAIN.sMessageFromPython', message_to_twincat, plc_datatype=pyads.PLCTYPE_STRING)
+"""
+# close connection
+plc.close()
