@@ -14,7 +14,7 @@ device_name, version = plc.read_device_info()
 print(str(device_name) + ' ' + str(version))
 
 #read a boolean
-Test_case = plc.read_by_name('GVL.ID_number', pyads.PLCTYPE_USINT)
+Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 """"
 	ElectricalLimits_ID: UDINT := 16#18FFCAF3;
 	ElectricalLimits_Length: USINT := 8;
@@ -136,13 +136,13 @@ Test_case = plc.read_by_name('GVL.ID_number', pyads.PLCTYPE_USINT)
 """
 
 #write ack
-plc.write_by_name('GVL.ID_number', 1)
-Test_case = plc.read_by_name('GVL.ID_number', pyads.PLCTYPE_USINT)
+plc.write_by_name('MAIN_1.ID_MAIN', 1)
+Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 
 
 seen_cases = set();
 while Test_case in {0,1,2}:
-	Test_case = plc.read_by_name('GVL.ID_number', pyads.PLCTYPE_USINT)
+	Test_case = plc.read_by_name('MAIN_1.ID_MAIN', pyads.PLCTYPE_USINT)
 	match Test_case:
 		case 0 if 0 not in seen_cases:
 			print("Current TestCase is " + str(Test_case))
