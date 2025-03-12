@@ -141,6 +141,7 @@ Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
 
 seen_cases = set()
+seen_cases.clear()
 while Test_case in {0,1,2}:
 	Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 	match Test_case:
