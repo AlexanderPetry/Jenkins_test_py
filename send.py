@@ -158,9 +158,9 @@ while Test_case in {0,1,2}:
 			print("MCD is tested")
 			seen_cases.add(2)
 
-		case _:
-			print("ERROR LATEST TESTCASE FAILED")
-			seen_cases.add(300)
+		# case _:
+		# 	print("ERROR LATEST TESTCASE FAILED")
+		# 	seen_cases.add(300)
 
 			
 			 
