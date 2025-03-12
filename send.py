@@ -1,6 +1,7 @@
 import pyads
 #192.168.1.120.1.1 #5.108.194.44.1.1
 AMSNETID = '5.108.194.44.1.1'
+DefaultTest = 1
 #IP =  '169.254.0.76'
 #LocalNetID = '192.168.1.120.1.1'
 
@@ -13,7 +14,7 @@ print('Current Status:',plc.read_state())
 device_name, version = plc.read_device_info()
 print(str(device_name) + ' ' + str(version))
 
-#read a boolean
+#read
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 """"
 	ElectricalLimits_ID: UDINT := 16#18FFCAF3;
@@ -136,10 +137,10 @@ Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 """
 
 #write ack
-plc.write_by_name('python.ID_number', 1,pyads.PLCTYPE_USINT)
+plc.write_by_name('python.ID_number', DefaultTest)
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
-print("TEST I SKIP THIS" + str(Test_case))
+print("TEST I SKIP THIS " + str(Test_case))
 seen_cases = set()
 seen_cases.clear()
 while Test_case in {0,1,2}:
