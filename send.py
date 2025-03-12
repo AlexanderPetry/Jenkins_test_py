@@ -136,7 +136,7 @@ Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 """
 
 #write ack
-plc.write_by_name('python.ID_number', 1)
+plc.write_by_name('python.ID_number', 1,pyads.PLCTYPE_USINT)
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
 print("TEST I SKIP THIS" + str(Test_case))
