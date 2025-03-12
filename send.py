@@ -139,7 +139,7 @@ Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 plc.write_by_name('python.ID_number', 1)
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
-
+print("TEST I SKIP THIS")
 seen_cases = set()
 seen_cases.clear()
 while Test_case in {0,1,2}:
