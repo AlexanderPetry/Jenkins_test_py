@@ -137,6 +137,7 @@ Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 """
 
 #write ack
+plc.write_by_name('python.ID_number', 0)
 plc.write_by_name('python.ID_number', DefaultTest)
 Test_case = plc.read_by_name('python.ID_number', pyads.PLCTYPE_USINT)
 
