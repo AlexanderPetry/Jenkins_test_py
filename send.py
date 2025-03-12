@@ -164,7 +164,7 @@ while Test_case in {0,1,2}:
 		# 	print("ERROR LATEST TESTCASE FAILED")
 		# 	seen_cases.add(300)
 
-			
+Test_case = plc.read_by_name('python.BatteryResult', pyads.PLCTYPE_STRING)			
 			 
 
 
