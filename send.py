@@ -16,11 +16,11 @@ if client.connect():
     client.close()
 
     time.sleep(180) #90 second wait for batteryresults
-    response = client.read_holding_registers(address= 0x8001 ,count=2,slave = 1)
+    response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
     if response.isError():
         print("Error reading registers")
     else:
-        print("Register Value: ", response.registers)
+        print("BatteryResult is: ", response.registers)
     time.sleep(1)
     
 else:
