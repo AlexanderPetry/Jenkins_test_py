@@ -16,11 +16,41 @@ if client.connect():
     client.close()
 
     time.sleep(180) #90 second wait for batteryresults
+    print("Testcase Ress 1.1 Device malfunction:\n")
     response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
     if response.isError():
-        print("Error reading registers")
-    else:
-        print("BatteryResult is: ", response.registers)
+        print("Error reading registers\n")
+    elif response.registers == 1:
+        print("BmsState is a Pass (Not Expected)\n")
+    elif response.registers == 2:
+        print("BmsState is a Error (Expected)\n")
+    time.sleep(1)
+    print("Testcase Ress 1.2 Power on after HV battery request:\n")
+    response = client.read_holding_registers(address= 0x8002 ,count=1,slave = 1)
+    if response.isError():
+        print("Error reading registers\n")
+    elif response.registers == 1:
+        print("Battery is on\n")
+    elif response.registers == 2:
+        print("Battery is off\n")
+    time.sleep(1)
+    print("Testcase Ress 1.3 Device Insulation error:\n")
+    response = client.read_holding_registers(address= 0x8003 ,count=1,slave = 1)
+    if response.isError():
+        print("Error reading registers\n")
+    elif response.registers == 1:
+        print("Battery is on\n")
+    elif response.registers == 2:
+        print("Battery is off\n")
+    time.sleep(1)
+    print("Testcase Ress 1.4 Communication error:\n")
+    response = client.read_holding_registers(address= 0x8004 ,count=1,slave = 1)
+    if response.isError():
+        print("Error reading registers\n")
+    elif response.registers == 1:
+        print("BmsState is a Pass (Not Expected)\n")
+    elif response.registers == 2:
+        print("BmsState is a Error (Expected)\n")
     time.sleep(1)
     
 else:
