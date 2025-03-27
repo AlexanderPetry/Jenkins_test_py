@@ -20,9 +20,9 @@ if client.connect():
     response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
     if response.isError():
         print("Error reading registers\n")
-    elif response.registers == 1:
+    elif response.registers[0] == 1:
         print("BmsState is a Pass (Not Expected)\n")
-    elif response.registers == 2:
+    elif response.registers[0] == 2:
         print("BmsState is a Error (Expected)\n")
     else:
         print("failed: " ,response.registers)
@@ -31,9 +31,9 @@ if client.connect():
     response = client.read_holding_registers(address= 0x8002 ,count=1,slave = 1)
     if response.isError():
         print("Error reading registers\n")
-    elif response.registers == 1:
+    elif response.registers[0] == 1:
         print("Battery is on\n")
-    elif response.registers == 2:
+    elif response.registers[0] == 2:
         print("Battery is off\n")
     else:
         print("failed: " ,response.registers)
@@ -42,9 +42,9 @@ if client.connect():
     response = client.read_holding_registers(address= 0x8003 ,count=1,slave = 1)
     if response.isError():
         print("Error reading registers\n")
-    elif response.registers == 1:
+    elif response.registers[0] == 1:
         print("Battery is on\n")
-    elif response.registers == 2:
+    elif response.registers[0] == 2:
         print("Battery is off\n")
     else:
         print("failed: " ,response.registers)    
@@ -53,9 +53,9 @@ if client.connect():
     response = client.read_holding_registers(address= 0x8004 ,count=1,slave = 1)
     if response.isError():
         print("Error reading registers\n")
-    elif response.registers == 1:
+    elif response.registers[0] == 1:
         print("BmsState is a Pass (Not Expected)\n")
-    elif response.registers == 2:
+    elif response.registers[0] == 2:
         print("BmsState is a Error (Expected)\n")
     else:
         print("failed: " ,response.registers)
