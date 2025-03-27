@@ -15,7 +15,7 @@ if client.connect():
     write_response = client.write_register(address= 0x8000 ,value=0,slave = 1)
     client.close()
 
-    time.sleep(180) #90 second wait for batteryresults
+    time.sleep(570) #90 second wait for batteryresults
     print("Testcase Ress 1.1 Device malfunction:\n")
     response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
     if response.isError():
