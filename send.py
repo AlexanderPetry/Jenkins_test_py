@@ -43,9 +43,9 @@ if client.connect():
     if response.isError():
         print("Error reading registers\n")
     elif response.registers[0] == 1:
-        print("Battery is on\n")
+        print("PASSED: Battery is off\n")
     elif response.registers[0] == 2:
-        print("Battery is off\n")
+        print("FAILED: Battery is on\n")
     else:
         print("failed: " ,response.registers)    
     time.sleep(1)
