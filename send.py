@@ -21,9 +21,9 @@ if client.connect():
     if response.isError():
         print("Error reading registers\n")
     elif response.registers[0] == 1:
-        print("BmsState is a Pass (Not Expected)\n")
+        print("PASS: BmsState is in error state\n")
     elif response.registers[0] == 2:
-        print("BmsState is a Error (Expected)\n")
+        print("FAILED: BMS isnt in error state\n")
     else:
         print("failed: " ,response.registers)
     time.sleep(1)
@@ -54,9 +54,9 @@ if client.connect():
     if response.isError():
         print("Error reading registers\n")
     elif response.registers[0] == 1:
-        print("BmsState is a Pass (Not Expected)\n")
+        print("PASSED: BmsState is in ERROR state\n")
     elif response.registers[0] == 2:
-        print("BmsState is a Error (Expected)\n")
+        print("FAILED:BMS isnt in error state\n")
     else:
         print("failed: " ,response.registers)
     time.sleep(1)
