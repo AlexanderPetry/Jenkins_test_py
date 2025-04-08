@@ -1,6 +1,12 @@
+# READ ME
+# Receiving 0 means that there is a communication error with modbus self
+# Receiving 1 means current Test Passed and wanted result happend
+# Receiving 2 means current Test Failed
+
 from pymodbus.client import ModbusTcpClient
 import time
 
+time.sleep(60)
 client = ModbusTcpClient('192.168.1.205',port=502)
 if client.connect():
     print("Connected to PLC")
@@ -12,9 +18,7 @@ if client.connect():
     else:
         print("Write succes")
     time.sleep(1)
-    write_response = client.write_register(address= 0x8000 ,value=0,slave = 1)
-    client.close()
-
+   
     time.sleep(600) #90 second wait for batteryresults
     print("Testcase Ress 1.1 Device malfunction:\n")
     response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
@@ -61,6 +65,13 @@ if client.connect():
         print("failed: " ,response.registers)
     time.sleep(1)
     
+    write_response = client.write_register(address= 0x8000 ,value=0,slave = 1) #to start test
+    if write_response.isError():
+        print("Error writing registers")
+    else:
+        print("Write succes")
+    time.sleep(1)
+    client.close()
 else:
     print("Failed connect")
 
@@ -68,17 +79,4 @@ else:
 
 
 
-#example
 
-# response = client.read_holding_registers(address= 0x8000 ,count=2,slave = 1)
-    # if response.isError():
-    #     print("Error reading registers")
-    # else:
-    #     print("Register Value: ", response.registers)
-    #time.sleep(1)
-
-#  write_response = client.write_register(address= 0x8000 ,value=1,slave = 1)
-#     if write_response.isError():
-#         print("Error writing registers")
-#     else:
-#         print("Write succes")
