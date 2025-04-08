@@ -122,7 +122,7 @@ if client.connect():
     
     time.sleep(1)
     
-    write_response = client.write_register(address= 0x8000 ,value=0,slave = 1) #to start test
+    write_response = client.write_register(address= 0x8000 ,value=255,slave = 1) #to start test
     if write_response.isError():
         print("Error writing registers")
     else:
