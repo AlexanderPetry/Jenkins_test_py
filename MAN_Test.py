@@ -50,7 +50,9 @@ if client.connect():
         print(" No Communication Error Check \n")
         
         print("Steering stick goes left (MAX 10 deg) "  + Answer[SizeOfAnswer-1] + "\n")
-        print("Steering stick goes right (MAX 10 deg) " + Answer[SizeOfAnswer-2]+"\n")
+        print("Log check if Axle actual turns "  + Answer[SizeOfAnswer-2] + "\n")
+        print("Steering stick goes right (MAX 10 deg) " + Answer[SizeOfAnswer-3]+"\n")
+        print("Log check if Axle actual turns "  + Answer[SizeOfAnswer-4] + "\n")
     else:
         print(" Communication Error Check \n")
     
@@ -120,12 +122,10 @@ if client.connect():
     else:
         print("Communication Error Check \n")
     
-    time.sleep(1)
     
-    write_response = client.write_register(address= 0x8000 ,value=255,slave = 1) #to start test
-    if write_response.isError():
-        print("Error writing registers")
-    else:
-        print("Write succes")
     time.sleep(1)
-    
+    response = client.read_holding_registers(address= 0x8000 ,count=1,slave = 1)
+    while response != 0:
+        time.sleep(1)
+        
+    client.close()
