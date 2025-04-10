@@ -65,9 +65,6 @@ if client.connect():
         print("failed: " ,response.registers)
     time.sleep(1)
     
-    response = client.read_holding_registers(address= 0x8000 ,count=1,slave = 1)
-    while response != 0:
-        time.sleep(1)
     client.close()
 else:
     print("Failed connect")
