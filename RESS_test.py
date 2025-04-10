@@ -71,7 +71,7 @@ if client.connect():
     else:
         print("Write succes")
     time.sleep(1)
-    client.close()
+    
 else:
     print("Failed connect")
 
