@@ -65,13 +65,10 @@ if client.connect():
         print("failed: " ,response.registers)
     time.sleep(1)
     
-    write_response = client.write_register(address= 0x8000 ,value=255,slave = 1) #to start test
-    if write_response.isError():
-        print("Error writing registers")
-    else:
-        print("Write succes")
-    time.sleep(1)
-    
+    response = client.read_holding_registers(address= 0x8000 ,count=1,slave = 1)
+    while response != 0:
+        time.sleep(1)
+    client.close()
 else:
     print("Failed connect")
 
