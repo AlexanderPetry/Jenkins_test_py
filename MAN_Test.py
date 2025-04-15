@@ -19,15 +19,11 @@ if client.connect():
     else:
         print("Write succes")
     
-    
-
-    time.sleep(900) #90 second wait for batteryresults
+    time.sleep(780) #90 second wait for batteryresults
     print("Testcase MAN-8 & 9 : Propulsion enable command\n")
     response = client.read_holding_registers(address= 0x8001 ,count=1,slave = 1)
     Answer = bin(response.registers[0])
     SizeOfAnswer = len(Answer)
-    
-   
     
     if SizeOfAnswer > 9:
         print("No Communication Error Check \n")
@@ -122,8 +118,13 @@ if client.connect():
     else:
         print("Communication Error Check \n")
     
+    response = client.read_holding_registers(address= 0x80FF ,count=1,slave = 1)
+    while response.registers[0] < 0:
+        time.sleep(1)
+    else:
+        write_response = client.write_register(address= 0x8000 ,value=255,slave = 1)
+        
     
     time.sleep(1)
-
-        
+   
     client.close()
