@@ -21,6 +21,11 @@ pipeline {
         bat 'C:\\Users\\TA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe MAN_Test.py'
       }
     }
+    stage('ESTOP_TEST') {
+      steps {
+        bat 'C:\\Users\\TA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe ESTOP_Test.py'
+      }
+    }
     
   }
 }
